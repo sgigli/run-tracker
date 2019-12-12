@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
-class RunsController < ApplicationController
+class RunsController < ProtectedController
   before_action :set_run, only: %i[show update destroy]
 
   # GET /runs
   def index
-    @runs = Run.all
+    @runs = current_user.runs.all
 
     render json: @runs
   end
@@ -17,7 +17,7 @@ class RunsController < ApplicationController
 
   # POST /runs
   def create
-    @run = Run.new(run_params)
+    @run = current_user.runs.build(run_params)
 
     if @run.save
       render json: @run, status: :created, location: @run
@@ -44,7 +44,7 @@ class RunsController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_run
-    @run = Run.find(params[:id])
+    @run = current_user.runs.find(params[:id])
   end
 
   # Only allow a trusted parameter "white list" through.
