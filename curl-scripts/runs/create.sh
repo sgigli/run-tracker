@@ -10,7 +10,8 @@ curl "http://localhost:4741/runs" \
       "date": "'"${DATE}"'",
       "distance": "'"${DIST}"'",
       "run_time": "'"${TIME}"'",
-      "place": "'"${PLACE}"'"
+      "place": "'"${PLACE}"'",
+      "user_id": "'"${USER}"'"
     }
   }'
 
