@@ -5,7 +5,7 @@ class RunsController < ProtectedController
 
   # GET /runs
   def index
-    @runs = current_user.runs.all
+    @runs = current_user.runs.all.order(:date)
 
     render json: @runs
   end
