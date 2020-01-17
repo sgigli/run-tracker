@@ -4,8 +4,16 @@ class RunsController < ProtectedController
   before_action :set_run, only: %i[show update destroy]
 
   # GET /runs
+  # GET /runs?individual=true
   def index
-    @runs = current_user.runs.all.order(:date)
+    # request.query_parameters
+    # params[:individual]
+    puts params[:individual]
+    if params[:individual] == 'true'
+      @runs = current_user.runs.all.order(:date)
+    else
+      @runs = Run.all.order(:date)
+    end
 
     render json: @runs
   end
